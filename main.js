@@ -1,19 +1,22 @@
 const fs = require('node:fs');
 
 const FILE_NAME='out.nc'
-const NR_OF_TILES_PER_ROW = 4
-const NR_OF_ROWS = 6
-var content
+const NR_OF_TILES_PER_COL = 4
+const NR_OF_COLS = 6
 const SCALE = 37 / 2
 
-//const GLOBAL_MARGIN_LEFT_MM   =   46
-//const GLOBAL_MARGIN_BOTTOM_MM =   18
+const DISTANCE_TILE_TO_TILE_X_MM = 40
+const DISTANCE_TILE_TO_TILE_Y_MM = 45.667
 
+const FIRST_TILE_X0_MM =   2 + SCALE * 0.866// 46
+const FIRST_TILE_Y0_MM =   2 // 18
 // Y: 33,91; x:28,43 - odl 0,0 lasera od 0,0 blachy
-const GLOBAL_MARGIN_LEFT_MM   =   46 - 28.43
-const GLOBAL_MARGIN_BOTTOM_MM =   18 - 33.91
+// const FIRST_TILE_X0_MM   =   46 - 28.43
+// const FIRST_TILE_Y0_MM =   18 - 33.91
 
-points = [[0,0]	,	[-0.866, 0.5],	[-0.866, 1.5]	,	[0,2]	,	[0.866,1.5]	,	[0.866,0.5]];
+
+points = [[0,0],[-0.866,0.5],[-0.866,1.5],[0,2],[0.866,1.5],[0.866,0.5]];
+var content
 
 function add(txt) {
   content += txt + "\n";
@@ -45,18 +48,18 @@ function main() {
   add("M3 S0");
   add("");
 
-  offset_x = GLOBAL_MARGIN_LEFT_MM;
-  offset_y = GLOBAL_MARGIN_BOTTOM_MM;
+  offset_x = FIRST_TILE_X0_MM;
+  offset_y = FIRST_TILE_Y0_MM;
 
-  for(let row = 0; row < NR_OF_ROWS; row++) {
-    for(let col = 0; col < NR_OF_TILES_PER_ROW; col++) {
+  for(let _col = 0; _col < NR_OF_COLS; _col++) {
+    for(let _row = 0; _row < NR_OF_TILES_PER_COL; _row++) {
   
       draw_hex(points, offset_x, offset_y);
-      offset_y += 40;
+      offset_y += DISTANCE_TILE_TO_TILE_Y_MM;
 
     }
-    offset_y = GLOBAL_MARGIN_BOTTOM_MM;
-    offset_x += 45;
+    offset_y = FIRST_TILE_Y0_MM;
+    offset_x += DISTANCE_TILE_TO_TILE_X_MM;
   }
 
   add("S0");
