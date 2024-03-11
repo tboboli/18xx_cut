@@ -2,15 +2,15 @@ const fs = require('node:fs');
 
 // ------------ CONFIGURATION: BEGIN ------------
 const FILE_NAME='out.nc'
-const NR_OF_TILES_PER_COL = 4
-const NR_OF_COLS = 6
-const SCALE = 42  // length of the longer diagonal of the hex in mm
+const NR_OF_TILES_PER_COL = 3
+const NR_OF_COLS = 5
+const SCALE = 44  // length of the longer diagonal of the hex in mm
 
-const DISTANCE_TILE_TO_TILE_X_MM = 40
-const DISTANCE_TILE_TO_TILE_Y_MM = 45.667
+const DISTANCE_TILE_TO_TILE_X_MM = 41.25
+const DISTANCE_TILE_TO_TILE_Y_MM = 47
 
 const FIRST_TILE_X0_MM =   2 + SCALE * 0.433// 46
-const FIRST_TILE_Y0_MM =   0 // 18
+const FIRST_TILE_Y0_MM =   2 // 18
 // Y: 33,91; x:28,43 - odl 0,0 lasera od 0,0 blachy
 // const FIRST_TILE_X0_MM   =   46 - 28.43
 // const FIRST_TILE_Y0_MM =   18 - 33.91
